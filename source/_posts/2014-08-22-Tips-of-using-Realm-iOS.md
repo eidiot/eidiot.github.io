@@ -2,7 +2,6 @@ title: Tips of using Realm iOS
 date: 2014-08-22 07:58:14
 tags:
 ---
-
 I am trying to use [Realm](http://realm.io/) on an iOS project by [CocoaPods](http://cocoapods.org/). After hours debugging, I finally got it working and there are 2 tips I'd like to record.
 
 ## Tip 1: Work on other [CocoaPods](http://cocoapods.org/) library project
