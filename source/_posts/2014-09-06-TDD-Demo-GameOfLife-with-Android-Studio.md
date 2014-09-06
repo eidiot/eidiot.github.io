@@ -2,25 +2,29 @@ title: TDD Demo GameOfLife with Android Studio
 date: 2014-09-06 19:27:05
 tags:
 ---
-On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example for [TDD](http://en.wikipedia.org/wiki/Test-driven_development) and I found it a really good example. So I made some videos to demonstrate how I tried TDD on it.
+On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example for [TDD](http://en.wikipedia.org/wiki/Test-driven_development) and I found it a really good example. So I made [some videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) to demonstrate how I tried TDD on it. In [the videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) when I say "grid" or "gred" it should actually be "cell". Sorry for my poor English.
 
-For each step I also posted new or changed code, and links of full code of that step on [GitHub](https://github.com/eidiot/TDD-GameLife-AndroidStudio).
+For each step I also posted new or changed code below, and links of full code after each step on [GitHub](https://github.com/eidiot/TDD-GameLife-AndroidStudio).
 
-I posted some keyboard shortcuts as well. I don't know what they are on windows but you can find (and change) them in "Keymap" section of Android Studio's preference (or settings) panel.
+I posted some keyboard shortcuts as well. I don't know what they are on windows but you can find them (and change them if you would like) in "Keymap" section of Android Studio's preference (or settings) panel.
 
 ## 1. Create GameOfLife Project
 
-The first step simply create a new project on [Android Studio](http://developer.android.com/sdk/installing/studio.html). [Android Studio](http://developer.android.com/sdk/installing/studio.html) is still in beta (I'm using 0.8.6) but I am very happy with it so far. On the [GDG Auckland September Meetup](http://www.meetup.com/GDGAuckland/events/199648182/) Julius Spencer said they've already been using it on production for one year now. So give it a try if you haven't yet. It's so much better than eclipse!
-
-<!-- more -->
+The first step simply create a new project on [Android Studio](http://developer.android.com/sdk/installing/studio.html). [Android Studio](http://developer.android.com/sdk/installing/studio.html) is still in beta (I'm using 0.8.6) but I am very happy with it so far. On the [GDG Auckland September Meetup](http://www.meetup.com/GDGAuckland/events/199648182/) Julius Spencer said his team ([JSA](http://www.juliusspencer.co.nz/)) have already been using it on production for one year now. So give it a try if you haven't yet. It's so much better than eclipse!
 
 - Run...: option + control + R
 - Run last: control + R
+
+<!-- more -->
+
+{% youtube -jDmel5Ru0E %}
 
 ## 2. Create class `GameModel` and test case `GameModelTest`
 
 - Create class: (New...) command + N
 - Create test: (Show Intention Actions) option + Enter
+
+{% youtube jHQvbW4qisY %}
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/02TestCase/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public class GameModelTest extends TestCase {
@@ -41,6 +45,8 @@ public class GameModel {
 - New test method: (New...) command + N
 - Create non-existent method or class: (Show Intention Actions) option + Enter
 - Duplicate Line or Block: command + D
+
+{% youtube DieYwoooLcE %}
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/03Init/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public class GameModelTest extends TestCase {
@@ -75,6 +81,8 @@ public class GameModel {
 
 ## 4. `GameModel.isAlive()`
 
+{% youtube e2pg99j6fWQ %}
+
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/04IsAlive/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_is_alive() throws Exception {
     assertFalse(instance.isAlive(0, 0));
@@ -91,6 +99,8 @@ public boolean isAlive(int row, int column) {
 ## 5. `GameModel.makeAlive()`
 
 - Go to test (Or go to test subject in test case): command + shift + T
+
+{% youtube Sb68dN41wOA %}
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/05MakeAlive/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_make_alive() throws Exception {
@@ -115,6 +125,10 @@ public void makeAlive(int row, int column) {
 ## 6. Test out of map
 
 - Refactor/Extract/Method...: command + option + M
+- Move Statement Up/Down: command + shift + up/down
+- Move Line Up/Down: option + shift + up/down
+
+{% youtube 48q8iLhAXb8 %}
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/06OutOfMap/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_is_alive() throws Exception {
@@ -153,6 +167,8 @@ private boolean isOutOfMap(int row, int column) {
 
 ## 7. `GameModel.makeDead()`
 
+{% youtube 72XeORLtxnU %}
+
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/07MakeDead/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_make_dead() throws Exception {
     instance.makeAlive(0, 0);
@@ -175,6 +191,8 @@ public void makeDead(int row, int column) {
 ```
 
 ## 8. Rule 1 to Rule 3
+
+{% youtube R0rGYXDSpjA %}
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/08Rule1To3/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_live_cell() throws Exception {
@@ -212,6 +230,8 @@ public boolean willLive(int row, int column) {
 ```
 
 ## 9. Rule 4
+
+{% youtube tXAzSxjySyY %}
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/09Rule4/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_dead_cell() throws Exception {
@@ -251,6 +271,8 @@ public boolean willLive(int row, int column) {
 
 ## 10. `GameModel.next()`
 
+{% youtube 1Bzp-4cvyVI %}
+
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/10Next/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_live_cell() throws Exception {
     //...
@@ -284,6 +306,8 @@ public void next() {
 - Override Methods...: control + O
 - Open Class: command + O
 - Open File: command + shift + O
+
+{% youtube 10-Tp-v829o %}
 
 ```java GameView.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/java/me/eidiot/gameoflife/GameView.java View Full Code
 public class GameView extends View {
@@ -350,6 +374,8 @@ public class MainActivity extends Activity {
 ```
 
 ## 12. Run the game and Glider demo
+
+{% youtube LK46tdcrr3A %}
 
 ```java MainActivity.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/12Glider/app/src/main/java/me/eidiot/gameoflife/MainActivity.java View Full Code
 public class MainActivity extends Activity {
