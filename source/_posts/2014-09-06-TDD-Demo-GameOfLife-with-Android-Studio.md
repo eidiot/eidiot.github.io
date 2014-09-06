@@ -2,13 +2,22 @@ title: TDD Demo GameOfLife with Android Studio
 date: 2014-09-06 19:27:05
 tags:
 ---
-On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example for [TDD](http://en.wikipedia.org/wiki/Test-driven_development) and I found it a really good example. So I made some videos to demonstrate how I tried TDD on it. For each step I also post new or changed code, and links of full code of that step on [GitHub](https://github.com/eidiot/TDD-GameLife-AndroidStudio). 
+On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example for [TDD](http://en.wikipedia.org/wiki/Test-driven_development) and I found it a really good example. So I made some videos to demonstrate how I tried TDD on it.
+
+For each step I also posted new or changed code, and links of full code of that step on [GitHub](https://github.com/eidiot/TDD-GameLife-AndroidStudio).
+
+I posted some keyboard shortcuts as well. You can find and change them in "Keymap" section of Android Studio's preference panel.
 
 ## 1. Create GameOfLife Project
+
+Simply create a new project on [Android Studio](http://developer.android.com/sdk/installing/studio.html). [Android Studio](http://developer.android.com/sdk/installing/studio.html) is still in beta (I'm using 0.8.6) but I am very happy with it so far. On the [GDG Auckland September Meetup](http://www.meetup.com/GDGAuckland/events/199648182/) Julius Spencer said they've already been using it on production for one year now. So give it a try if you haven't yet. It's so much better than eclipse!
 
 <!-- more -->
 
 ## 2. Create class `GameModel` and test case `GameModelTest`
+
+- Create class: (New...) command + N
+- Create test: (Show Intention Actions) option + Enter
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/02TestCase/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public class GameModelTest extends TestCase {
@@ -25,6 +34,9 @@ public class GameModel {
 ```
 
 ## 3. `GameModel` initialisation
+
+- New test method: (New...) command + N
+- Create non-existent method or class: (Show Intention Actions) option + Enter
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/03Init/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public class GameModelTest extends TestCase {
@@ -95,6 +107,8 @@ public void makeAlive(int row, int column) {
 ```
 
 ## 6. Test out of map
+
+- Refactor/Extract/Method...: command + option + M
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/06OutOfMap/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_is_alive() throws Exception {
