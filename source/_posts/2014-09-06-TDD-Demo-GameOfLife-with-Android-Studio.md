@@ -6,16 +6,16 @@ On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.or
 
 For each step I also posted new or changed code, and links of full code of that step on [GitHub](https://github.com/eidiot/TDD-GameLife-AndroidStudio).
 
-I posted some keyboard shortcuts as well. You can find and change them in "Keymap" section of Android Studio's preference panel.
+I posted some keyboard shortcuts as well. I don't know what they are on windows but you can find (and change) them in "Keymap" section of Android Studio's preference (or settings) panel.
 
 ## 1. Create GameOfLife Project
 
-Simply create a new project on [Android Studio](http://developer.android.com/sdk/installing/studio.html). [Android Studio](http://developer.android.com/sdk/installing/studio.html) is still in beta (I'm using 0.8.6) but I am very happy with it so far. On the [GDG Auckland September Meetup](http://www.meetup.com/GDGAuckland/events/199648182/) Julius Spencer said they've already been using it on production for one year now. So give it a try if you haven't yet. It's so much better than eclipse!
+The first step simply create a new project on [Android Studio](http://developer.android.com/sdk/installing/studio.html). [Android Studio](http://developer.android.com/sdk/installing/studio.html) is still in beta (I'm using 0.8.6) but I am very happy with it so far. On the [GDG Auckland September Meetup](http://www.meetup.com/GDGAuckland/events/199648182/) Julius Spencer said they've already been using it on production for one year now. So give it a try if you haven't yet. It's so much better than eclipse!
+
+<!-- more -->
 
 - Run...: option + control + R
 - Run last: control + R
-
-<!-- more -->
 
 ## 2. Create class `GameModel` and test case `GameModelTest`
 
@@ -119,6 +119,7 @@ public void makeAlive(int row, int column) {
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/06OutOfMap/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_is_alive() throws Exception {
     assertFalse(instance.isAlive(0, 0));
+    // out of map
     assertFalse(instance.isAlive(-1, 0));
     assertFalse(instance.isAlive(0, -1));
     assertFalse(instance.isAlive(3, 0));
@@ -127,6 +128,7 @@ public void test_is_alive() throws Exception {
 public void test_make_alive() throws Exception {
     instance.makeAlive(0, 0);
     assertTrue(instance.isAlive(0, 0));
+    // out of map
     instance.makeAlive(-1, 0);
     instance.makeAlive(0, -1);
     instance.makeAlive(3, 0);
@@ -156,6 +158,7 @@ public void test_make_dead() throws Exception {
     instance.makeAlive(0, 0);
     instance.makeDead(0, 0);
     assertFalse(instance.isAlive(0, 0));
+    // out of map
     instance.makeDead(-1, 0);
     instance.makeDead(0, -1);
     instance.makeDead(3, 0);
@@ -176,13 +179,16 @@ public void makeDead(int row, int column) {
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/08Rule1To3/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_live_cell() throws Exception {
     instance.makeAlive(1, 1);
+    // Rule 1 (0, 1)
     assertFalse(instance.willLive(1, 1));
     instance.makeAlive(0, 0);
     assertFalse(instance.willLive(1, 1));
+    // Rule 2 (2, 3)
     instance.makeAlive(0, 1);
     assertTrue(instance.willLive(1, 1));
     instance.makeAlive(0, 2);
     assertTrue(instance.willLive(1, 1));
+    // Rule 3 ( >3 )
     instance.makeAlive(2, 2);
     assertFalse(instance.willLive(1, 1));
 }
@@ -209,13 +215,18 @@ public boolean willLive(int row, int column) {
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/09Rule4/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_dead_cell() throws Exception {
+    // 0 -> dead
     assertFalse(instance.willLive(1, 1));
+    // 1 -> dead
     instance.makeAlive(0, 0);
     assertFalse(instance.willLive(1, 1));
+    // 2 -> dead
     instance.makeAlive(0, 1);
     assertFalse(instance.willLive(1, 1));
+    // 3 -> Alive
     instance.makeAlive(0, 2);
     assertTrue(instance.willLive(1, 1));
+    // 4 -> dead
     instance.makeAlive(2, 2);
     assertFalse(instance.willLive(1, 1));
 }
@@ -234,7 +245,7 @@ public boolean willLive(int row, int column) {
     if (isAlive(row, column)) {
         return aliveNeighbours == 2 || aliveNeighbours == 3;
     }
-    return aliveNeighbours == 3;
+    return aliveNeighbours == 3; // The only changed line.
 }
 ```
 
@@ -271,6 +282,8 @@ public void next() {
 
 - Recent Files: command + E
 - Override Methods...: control + O
+- Open Class: command + O
+- Open File: command + shift + O
 
 ```java GameView.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/java/me/eidiot/gameoflife/GameView.java View Full Code
 public class GameView extends View {
@@ -344,20 +357,25 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Model
         final GameModel model = new GameModel(30, 15);
+        // Glider
         model.makeAlive(1, 0);
         model.makeAlive(2, 1);
         model.makeAlive(0, 2);
         model.makeAlive(1, 2);
         model.makeAlive(2, 2);
+        // View
         final GameView view = (GameView) findViewById(R.id.gameView);
         view.setup(model);
+        // Run loop
         final int INTERVAL = 300;
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 handler.postDelayed(this, INTERVAL);
+                // Update
                 model.next();
                 view.invalidate();
             }
