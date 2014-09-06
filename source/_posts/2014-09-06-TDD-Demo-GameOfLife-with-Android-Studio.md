@@ -12,6 +12,9 @@ I posted some keyboard shortcuts as well. You can find and change them in "Keyma
 
 Simply create a new project on [Android Studio](http://developer.android.com/sdk/installing/studio.html). [Android Studio](http://developer.android.com/sdk/installing/studio.html) is still in beta (I'm using 0.8.6) but I am very happy with it so far. On the [GDG Auckland September Meetup](http://www.meetup.com/GDGAuckland/events/199648182/) Julius Spencer said they've already been using it on production for one year now. So give it a try if you haven't yet. It's so much better than eclipse!
 
+- Run...: option + control + R
+- Run last: control + R
+
 <!-- more -->
 
 ## 2. Create class `GameModel` and test case `GameModelTest`
@@ -37,6 +40,7 @@ public class GameModel {
 
 - New test method: (New...) command + N
 - Create non-existent method or class: (Show Intention Actions) option + Enter
+- Duplicate Line or Block: command + D
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/03Init/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public class GameModelTest extends TestCase {
@@ -85,6 +89,8 @@ public boolean isAlive(int row, int column) {
 ```
 
 ## 5. `GameModel.makeAlive()`
+
+- Go to test (Or go to test subject in test case): command + shift + T
 
 ```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/05MakeAlive/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_make_alive() throws Exception {
@@ -262,6 +268,9 @@ public void next() {
 ```
 
 ## 11. GameView
+
+- Recent Files: command + E
+- Override Methods...: control + O
 
 ```java GameView.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/java/me/eidiot/gameoflife/GameView.java View Full Code
 public class GameView extends View {
