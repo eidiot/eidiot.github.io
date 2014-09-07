@@ -2,20 +2,18 @@ title: TDD Demo GameOfLife with Android Studio
 date: 2014-09-06 19:27:05
 tags:
 ---
-On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example for [TDD](http://en.wikipedia.org/wiki/Test-driven_development) and I found it a really good example. So I made [some videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) to demonstrate how I tried TDD on it. In [the videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) when I say "grid" or "gred" it should actually be "cell". Sorry for my poor English.
+On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example for [TDD](http://en.wikipedia.org/wiki/Test-driven_development) and I found it a really good example. So I made [some videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) to demonstrate how I tried TDD on it. In [the videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) when I say "grid" or "gred" it should actually be "cell" (And I pronounced "live" wrongly). Sorry for my poor English. If the videos are not clear please try to change quality to HD by the settings button.
 
-For each step I also posted new or changed code below, and links of full code after each step on [GitHub](https://github.com/eidiot/TDD-GameLife-AndroidStudio).
-
-I posted some keyboard shortcuts as well. I don't know what they are on windows but you can find them (and change them if you would like) in "Keymap" section of Android Studio's preference (or settings) panel.
+For each step I also posted new or changed code below, and links of full code after each step on [GitHub](https://github.com/eidiot/TDD-GameLife-AndroidStudio). I posted some keyboard shortcuts as well. I don't know what they are on windows but you can find them (and change them if you would like) in "Keymap" section of Android Studio's preference (or settings) panel.
 
 ## 1. Create GameOfLife Project
 
-The first step simply create a new project on [Android Studio](http://developer.android.com/sdk/installing/studio.html). [Android Studio](http://developer.android.com/sdk/installing/studio.html) is still in beta (I'm using 0.8.6) but I am very happy with it so far. On the [GDG Auckland September Meetup](http://www.meetup.com/GDGAuckland/events/199648182/) Julius Spencer said his team ([JSA](http://www.juliusspencer.co.nz/)) have already been using it on production for one year now. So give it a try if you haven't yet. It's so much better than eclipse!
+The first step simply create a new project on [Android Studio](http://developer.android.com/sdk/installing/studio.html). [Android Studio](http://developer.android.com/sdk/installing/studio.html) is still in beta (I'm using 0.8.6) but I am very happy with it so far. On the [GDG Auckland September Meetup](http://www.meetup.com/GDGAuckland/events/199648182/), [Julius Spencer](https://twitter.com/juliusspencer) said his team ([JSA](http://www.juliusspencer.co.nz/)) has already been using Android Studio on production for one year now. So give it a try if you haven't yet. It's so much better than eclipse!
+
+<!-- more -->
 
 - Run...: option + control + R
 - Run last: control + R
-
-<!-- more -->
 
 {% youtube -jDmel5Ru0E %}
 
