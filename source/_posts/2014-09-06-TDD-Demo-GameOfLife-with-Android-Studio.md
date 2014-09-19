@@ -4,7 +4,7 @@ tags:
 ---
 On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example for [TDD](http://en.wikipedia.org/wiki/Test-driven_development) and I found it a really good example. So I made [some videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) to demonstrate how I tried TDD on it. In [the videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) when I say "grid" or "gred" it should actually be "cell" (And I pronounced "live" wrongly). Sorry for my poor English. If the videos are not clear please try to change quality to HD by the settings button.
 
-For each step I also posted new or changed code below, and links of full code after each step on [GitHub](https://github.com/eidiot/TDD-GameLife-AndroidStudio). I posted some keyboard shortcuts as well. I don't know what they are on windows but you can find them (and change them if you would like) in "Keymap" section of Android Studio's preference (or settings) panel.
+For each step I also posted new or changed code below, and links of full code after each step on [GitHub](https://github.com/evan-liu/TDD-GameLife-AndroidStudio). I posted some keyboard shortcuts as well. I don't know what they are on windows but you can find them (and change them if you would like) in "Keymap" section of Android Studio's preference (or settings) panel.
 
 ## 1. Create GameOfLife Project
 
@@ -24,7 +24,7 @@ The first step simply create a new project on [Android Studio](http://developer.
 
 {% youtube jHQvbW4qisY %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/02TestCase/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/02TestCase/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public class GameModelTest extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
@@ -33,7 +33,7 @@ public class GameModelTest extends TestCase {
 
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/02TestCase/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/02TestCase/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 public class GameModel {
 }
 ```
@@ -46,7 +46,7 @@ public class GameModel {
 
 {% youtube DieYwoooLcE %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/03Init/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/03Init/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public class GameModelTest extends TestCase {
     GameModel instance;
     public void setUp() throws Exception {
@@ -60,7 +60,7 @@ public class GameModelTest extends TestCase {
 }
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/03Init/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/03Init/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 public class GameModel {
     private int rows;
     private int columns;
@@ -81,14 +81,14 @@ public class GameModel {
 
 {% youtube e2pg99j6fWQ %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/04IsAlive/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/04IsAlive/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_is_alive() throws Exception {
     assertFalse(instance.isAlive(0, 0));
 }
 
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/04IsAlive/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/04IsAlive/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 public boolean isAlive(int row, int column) {
     return false;
 }
@@ -100,14 +100,14 @@ public boolean isAlive(int row, int column) {
 
 {% youtube Sb68dN41wOA %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/05MakeAlive/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/05MakeAlive/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_make_alive() throws Exception {
     instance.makeAlive(0, 0);
     assertTrue(instance.isAlive(0, 0));
 }
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/05MakeAlive/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/05MakeAlive/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 private boolean map[][];
 public GameModel(int rows, int columns) {
     map = new boolean[rows][columns];
@@ -128,7 +128,7 @@ public void makeAlive(int row, int column) {
 
 {% youtube 48q8iLhAXb8 %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/06OutOfMap/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/06OutOfMap/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_is_alive() throws Exception {
     assertFalse(instance.isAlive(0, 0));
     // out of map
@@ -148,7 +148,7 @@ public void test_make_alive() throws Exception {
 }
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/06OutOfMap/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/06OutOfMap/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 public boolean isAlive(int row, int column) {
     return !isOutOfMap(row, column) && map[row][column];
 }
@@ -167,7 +167,7 @@ private boolean isOutOfMap(int row, int column) {
 
 {% youtube 72XeORLtxnU %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/07MakeDead/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/07MakeDead/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_make_dead() throws Exception {
     instance.makeAlive(0, 0);
     instance.makeDead(0, 0);
@@ -180,7 +180,7 @@ public void test_make_dead() throws Exception {
 }
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/07MakeDead/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/07MakeDead/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 public void makeDead(int row, int column) {
     if (!isOutOfMap(row, column)) {
         map[row][column] = false;
@@ -192,7 +192,7 @@ public void makeDead(int row, int column) {
 
 {% youtube R0rGYXDSpjA %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/08Rule1To3/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/08Rule1To3/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_live_cell() throws Exception {
     instance.makeAlive(1, 1);
     // Rule 1 (0, 1)
@@ -210,7 +210,7 @@ public void test_live_cell() throws Exception {
 }
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/08Rule1To3/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/08Rule1To3/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 public boolean willLive(int row, int column) {
     int aliveNeighbours = 0;
     for (int i = row - 1; i <= row + 1; i++) {
@@ -231,7 +231,7 @@ public boolean willLive(int row, int column) {
 
 {% youtube tXAzSxjySyY %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/09Rule4/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/09Rule4/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_dead_cell() throws Exception {
     // 0 -> dead
     assertFalse(instance.willLive(1, 1));
@@ -250,7 +250,7 @@ public void test_dead_cell() throws Exception {
 }
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/09Rule4/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/09Rule4/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 public boolean willLive(int row, int column) {
     int aliveNeighbours = 0;
     for (int i = row - 1; i <= row + 1; i++) {
@@ -271,7 +271,7 @@ public boolean willLive(int row, int column) {
 
 {% youtube 1Bzp-4cvyVI %}
 
-```java GameModelTest.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/10Next/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
+```java GameModelTest.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/10Next/app/src/androidTest/java/me/eidiot/gameoflife/GameModelTest.java View Full Code
 public void test_live_cell() throws Exception {
     //...
     assertFalse(instance.willLive(1, 1));
@@ -286,7 +286,7 @@ public void test_dead_cell() throws Exception {
 }
 ```
 
-```java GameModel.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/10Next/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
+```java GameModel.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/10Next/app/src/main/java/me/eidiot/gameoflife/GameModel.java View Full Code
 public void next() {
     boolean newMap[][] = new boolean[rows][columns];
     for (int i = 0; i < rows; i++) {
@@ -307,7 +307,7 @@ public void next() {
 
 {% youtube 10-Tp-v829o %}
 
-```java GameView.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/java/me/eidiot/gameoflife/GameView.java View Full Code
+```java GameView.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/java/me/eidiot/gameoflife/GameView.java View Full Code
 public class GameView extends View {
     private GameModel model;
     private Paint strokePaint;
@@ -349,7 +349,7 @@ public class GameView extends View {
 }
 ```
 
-```xml activity_main.xml https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/res/layout/activity_main.xml View Full Code
+```xml activity_main.xml https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/res/layout/activity_main.xml View Full Code
 <RelativeLayout>
     <me.eidiot.gameoflife.GameView
         android:id="@+id/gameView"
@@ -358,7 +358,7 @@ public class GameView extends View {
 </RelativeLayout>
 ```
 
-```java MainActivity.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/java/me/eidiot/gameoflife/MainActivity.java View Full Code
+```java MainActivity.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/11GameView/app/src/main/java/me/eidiot/gameoflife/MainActivity.java View Full Code
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -375,7 +375,7 @@ public class MainActivity extends Activity {
 
 {% youtube LK46tdcrr3A %}
 
-```java MainActivity.java https://github.com/eidiot/TDD-GameLife-AndroidStudio/blob/12Glider/app/src/main/java/me/eidiot/gameoflife/MainActivity.java View Full Code
+```java MainActivity.java https://github.com/evan-liu/TDD-GameLife-AndroidStudio/blob/12Glider/app/src/main/java/me/eidiot/gameoflife/MainActivity.java View Full Code
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

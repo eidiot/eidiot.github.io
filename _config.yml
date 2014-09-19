@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: eidiot's blog
-subtitle: No need to be clever all the time. Do try to be smart when programming :)
+title: Evan is Coding
+subtitle:
 description:
-author: eidiot
-email: eidiot@gmail.com
+author: Evan Liu
+email: evancoding@gmail.com
 language: en
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://eidiot.me
+url: http://evancoding.com
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -87,4 +87,4 @@ exclude_generator:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: github
-  repo: https://github.com/eidiot/eidiot.github.io.git
+  repo: https://github.com/evan-liu/evan-liu.github.io.git
