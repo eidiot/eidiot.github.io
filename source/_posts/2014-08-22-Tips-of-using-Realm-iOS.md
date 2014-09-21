@@ -16,4 +16,4 @@ If you need to use a RLMArray of one model object `SomeObject` in another, you n
 
 ## Tip 3: Do not work with `<NSObject>` protocol
 
-After I upgrade to Realm 0.85.0 and Xcode 6, Realm complain about a 'hash' property. After debugging for a while I found out that it is because some of my RLMObjects conform to `<NSObject>` protocol. It was fine with Realm 0.83.0 and Xcode 5. I'm not sure if it's because of my upgrade of Realm or Xcode but it was fixed just by removing the `<NSObject>` protocol from the RLMObjects. 
+After I upgraded to Realm 0.85.0 and Xcode 6, Realm complained about a 'hash' property. After debugging for a while I found out that it is because some of my RLMObjects conform to `<NSObject>` protocol. It was fine with Realm 0.83.0 and Xcode 5. I'm not sure if it's because of my upgrade of Realm or Xcode but it was fixed just by removing the `<NSObject>` protocol from the RLMObjects.
