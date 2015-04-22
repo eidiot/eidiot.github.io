@@ -16,7 +16,7 @@ describe('$MODULE$.$NAME$', function () {
 
 ## Mock dependencies
 
-At start of tests when we load the module we can mock dependencies as the same time:
+At start of tests when we load the module we can mock dependencies at the same time:
 
 ```javascript
 var $VALUE$;
