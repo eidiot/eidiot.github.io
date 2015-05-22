@@ -1,6 +1,9 @@
 title: AngularJS unit testing with Jasmine
 date: 2015-03-01 09:42:09
 tags:
+- TDD
+- JavaScript
+- AngularJS
 ---
 I am currently working on a hybrid mobile app using [Ionic](http://ionicframework.com/) which is based on [AngularJS](http://angularjs.org/). [AngularJS](http://angularjs.org/), just like my favorite ActionScript 3 framework [Robotlegs](http://www.robotlegs.org/), was designed to be testable. With helps of dependency injection and built in mocks, it is quite easy to write tests but still can be painful to get everything sorted out. Here are some tips to make life easier. Like a template (in [WebStorm](http://www.jetbrains.com/webstorm/)) to setup a test for a service:
 

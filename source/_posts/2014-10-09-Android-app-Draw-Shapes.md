@@ -1,6 +1,8 @@
 title: Android app Draw Shapes
 date: 2014-10-09 05:42:31
 tags:
+- Android
+- Apps
 ---
 My first Android App [Draw Shapes](https://play.google.com/store/apps/details?id=com.evancoding.drawshapes), which is actually my first assignment of android programming class, is now on [Google Play](https://play.google.com/store/apps/details?id=com.evancoding.drawshapes). [The code](https://github.com/evan-liu/DrawShaps) is shared at [GitHub](https://github.com/evan-liu/DrawShaps).
 

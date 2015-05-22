@@ -1,6 +1,8 @@
 title: C++ unit testing with AppCode and GoogleTest
 date: 2014-10-15 21:35:14
 tags:
+- TDD
+- C++
 ---
 AppCode started to support [Google Test](https://code.google.com/p/googletest/) [since 2.5 EAP](http://blog.jetbrains.com/objc/2013/09/appcode-2-5-eap-opens-with-cocoapods-and-google-test/). Steps to get it work:
 

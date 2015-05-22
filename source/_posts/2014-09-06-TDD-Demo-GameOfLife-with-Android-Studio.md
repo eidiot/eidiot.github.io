@@ -1,6 +1,8 @@
 title: TDD Demo GameOfLife with Android Studio
 date: 2014-09-06 19:27:05
 tags:
+- TDD
+- Android
 ---
 On my Java class the teacher used [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example for [TDD](http://en.wikipedia.org/wiki/Test-driven_development) and I found it a really good example. So I made [some videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) to demonstrate how I tried TDD on it. In [the videos](https://www.youtube.com/watch?v=-jDmel5Ru0E&list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA) when I say "grid" or "gred" it should actually be "cell" (And I pronounced "live" wrongly). Sorry for my poor English. If the videos are not clear please try to change quality to HD by the settings button.
 
