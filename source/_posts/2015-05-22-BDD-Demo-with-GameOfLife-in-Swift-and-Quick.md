@@ -14,7 +14,7 @@ BDD([Behavior Driven development](http://en.wikipedia.org/wiki/Behavior-driven_d
 - What to call the tests
 - How to understand why a test fails
 
-That was [version 1](http://dannorth.net/2012/05/31/bdd-is-like-tdd-if/comment-page-1/#comment-10313) of BDD in mid-2003. [BDD v3](http://dannorth.net/2012/05/31/bdd-is-like-tdd-if) now is more about communications between all different roles in agile teams using the same language: given-when-then(context-event-behavior). 
+That was [version 1](http://dannorth.net/2012/05/31/bdd-is-like-tdd-if/comment-page-1/#comment-10313) of BDD in mid-2003. [BDD v3](http://dannorth.net/2012/05/31/bdd-is-like-tdd-if) now is more about communications between all different roles in agile teams using the same language: GivenWhenThen([[1]](https://github.com/cucumber/cucumber/wiki/Given-When-Then) [[2]](http://martinfowler.com/bliki/GivenWhenThen.html)). 
 
 I made [some videos](/2014/09/06/TDD-Demo-GameOfLife-with-Android-Studio/) before to demonstrate TDD on Android platform using [Conway’s Game of Life](http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) as an example. This time I will use this example again to demonstrate BDD on iOS platform in Swift and a BDD framework [Quick](https://github.com/Quick/Quick). 
 ([Code at GitHub](https://github.com/evan-liu/BDD-GameOfLife-Swift))
