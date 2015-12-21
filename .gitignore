@@ -2,7 +2,7 @@ db.json
 debug.log
 node_modules/
 public/
-.deploy/
+.deploy*/
 
 # Created by http://www.gitignore.io
 
