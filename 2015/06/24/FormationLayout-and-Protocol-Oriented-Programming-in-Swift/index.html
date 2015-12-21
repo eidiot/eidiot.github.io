@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/index.html">
 <meta property="og:site_name" content="Evan is Coding">
 <meta property="og:description" content="My favourite talk of WWDC 2015 was Protocol-Oriented Programming in Swift. However, when Dave Abrahams says, “Swift is the first Protocol-Oriented Programming language”, I didn’t get it. Isn’t protoco">
-<meta property="og:updated_time" content="2015-07-02T20:58:33.000Z">
+<meta property="og:updated_time" content="2015-07-02T21:05:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FormationLayout and Protocol-Oriented Programming in Swift">
 <meta name="twitter:description" content="My favourite talk of WWDC 2015 was Protocol-Oriented Programming in Swift. However, when Dave Abrahams says, “Swift is the first Protocol-Oriented Programming language”, I didn’t get it. Isn’t protoco">
@@ -107,18 +107,18 @@ layout.group(v2, v3, v4).width(<span class="number">100</span>).height(<span cla
 </code></pre>
 <p>It is easy by using an abstract class. </p>
 <pre><code class="swift"><span class="class"><span class="keyword">class</span> <span class="title">AbstractFormation</span> </span>{
-    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { fatalError(<span class="string">"abstract"</span>) }
-    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { fatalError(<span class="string">"abstract"</span>) }
+    <span class="function"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="built_in">fatalError</span>(<span class="string">"abstract"</span>) }
+    <span class="function"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="built_in">fatalError</span>(<span class="string">"abstract"</span>) }
 }
 <span class="class"><span class="keyword">class</span> <span class="title">ViewFormation</span>: <span class="title">AbstractFormation</span> </span>{
     <span class="comment">// Create constraints in these methods then return self.</span>
-    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
-    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
 }
 <span class="class"><span class="keyword">class</span> <span class="title">GroupFormation</span>: <span class="title">AbstractFormation</span> </span>{
     <span class="comment">// Call same methods on each view in the group then return self.</span>
-    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
-    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
 }
 </code></pre>
 <p>Now I want the formations to make size of a view be the same as another. </p>
@@ -129,32 +129,32 @@ layout.group(v2, v3, v4).width(v5).height(v5)
 <p>Still easy. Add another two abstract methods in the abstract class and make the two formation types override them, right? Wait, how about the <a href="https://en.wikipedia.org/wiki/Open/closed_principle" target="_blank" rel="external">open/closed principle</a>? I don’t want to modify all my classes every time I want new features!</p>
 <p>Let’s try protocols instead.</p>
 <pre><code class="swift"><span class="class"><span class="keyword">protocol</span> <span class="title">FormationTakesCGFloat</span> </span>{
-    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
-    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
+    <span class="function"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
+    <span class="function"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
 }
 <span class="class"><span class="keyword">extension</span> <span class="title">ViewFormation</span>: <span class="title">FormationTakesCGFloat</span> </span>{
     <span class="comment">// Create constraints in these methods then return self.</span>
-    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
-    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="function"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="function"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
 }
 <span class="class"><span class="keyword">extension</span> <span class="title">GroupFormation</span>: <span class="title">FormationTakesCGFloat</span> </span>{
     <span class="comment">// Call same methods on each view in the group then return self.</span>
-    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
-    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="function"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="function"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
 }
 
 <span class="class"><span class="keyword">protocol</span> <span class="title">FormationTakesUIView</span> </span>{
-    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(targetView: UIView)</span></span> -&gt; <span class="type">Self</span>
-    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(targetView: UIView)</span></span> -&gt; <span class="type">Self</span>
+    <span class="function"><span class="keyword">func</span> <span class="title">width</span><span class="params">(targetView: UIView)</span></span> -&gt; <span class="type">Self</span>
+    <span class="function"><span class="keyword">func</span> <span class="title">height</span><span class="params">(targetView: UIView)</span></span> -&gt; <span class="type">Self</span>
 }
 <span class="comment">//... extension ViewFormation &amp; GroupFormation: FormationTakesUIView ...</span>
 </code></pre>
 <p>Firstly, we now have different protocols and formation extensions that confirm to the protocols. When we need other forms of constraint factory methods just create new protocols and extensions. No changes to any exist code.</p>
 <p>Secondly, methods return <code>Self</code> to make them chainable even though they are defined in different protocols or extensions. </p>
 <p>That’s good. Now I want more methods that take constant value and UIView. So let’s add <code>top()</code> and <code>bottom()</code> to all the protocols and extensions …</p>
-<p>Wait, we have <strong>Protocol Extensions</strong> in Swift 2. Let’s change our protocols:  </p>
+<p>Wait, we have <strong>Protocol Extensions</strong> in Swift 2. Let’s change our protocols: </p>
 <pre><code class="swift"><span class="class"><span class="keyword">protocol</span> <span class="title">FormationTakesCGFloat</span> </span>{
-    <span class="func"><span class="keyword">func</span> <span class="title">attribute</span><span class="params">(attribute: NSLayoutAttribute, value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
+    <span class="function"><span class="keyword">func</span> <span class="title">attribute</span><span class="params">(attribute: NSLayoutAttribute, value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
 }
 <span class="class"><span class="keyword">extension</span> <span class="title">ViewFormation</span>: <span class="title">FormationTakesCGFloat</span> </span>{
     <span class="comment">// Create constraints in this method then return self.</span>
@@ -166,30 +166,30 @@ layout.group(v2, v3, v4).width(v5).height(v5)
 }
 
 <span class="class"><span class="keyword">extension</span> <span class="title">FormationTakesCGFloat</span> </span>{
-    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
+    <span class="function"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
         <span class="keyword">return</span> attribute(.<span class="type">Width</span>, value: value)
     }
-    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
+    <span class="function"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
         <span class="keyword">return</span> attribute(.<span class="type">Height</span>, value: value)
     }    
 }
 </code></pre>
 <p>When we want more methods take <code>CGFloat</code>/<code>UIView</code>, create more <strong>Protocol Extensions</strong>.</p>
 <pre><code class="swift"><span class="class"><span class="keyword">extension</span> <span class="title">FormationTakesCGFloat</span> </span>{
-    <span class="func"><span class="keyword">func</span> <span class="title">top</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
+    <span class="function"><span class="keyword">func</span> <span class="title">top</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
         <span class="keyword">return</span> attribute(.<span class="type">Top</span>, value: value)
     }
-    <span class="func"><span class="keyword">func</span> <span class="title">bottom</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
+    <span class="function"><span class="keyword">func</span> <span class="title">bottom</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
         <span class="keyword">return</span> attribute(.<span class="type">Bottom</span>, value: value)
     }    
 }
 </code></pre>
 <p>Then both <code>ViewFormation</code> and <code>GroupFormatoin</code> will have <code>top()</code> and <code>bottom()</code> methods without any changes to exist code.</p>
 <p>So this is how <a href="https://github.com/evan-liu/FormationLayout" target="_blank" rel="external">FormationLayout</a> looks like now: </p>
-<h4 id="Methods_are_chainable">Methods are chainable</h4><p>Even group only methods like <code>hSpace()</code> and <code>vSpace()</code>:</p>
+<h4 id="Methods_are_chainable"><a href="#Methods_are_chainable" class="headerlink" title="Methods are chainable"></a>Methods are chainable</h4><p>Even group only methods like <code>hSpace()</code> and <code>vSpace()</code>:</p>
 <pre><code class="swift">layout.group(v1, v2, v3).size(<span class="number">100</span>).hSpace(<span class="number">10</span>).centerY(view)
 </code></pre>
-<h4 id="Features_are_protocols">Features are protocols</h4><p>Steps to add a new feature (form of constraint factory methods): </p>
+<h4 id="Features_are_protocols"><a href="#Features_are_protocols" class="headerlink" title="Features are protocols"></a>Features are protocols</h4><p>Steps to add a new feature (form of constraint factory methods): </p>
 <ul>
 <li>Create a protocol.</li>
 <li>Create extensions of the formations that support the new feature to confirm to the protocol.</li>
@@ -201,7 +201,7 @@ layout.group(v2, v3, v4).width(v5).height(v5)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/" data-id="cibaif4q00005krn6vkp8yxtw" class="article-share-link">Share</a>
+      <a data-url="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/" data-id="ciifme2hu0009o3u3edl5lzy1" class="article-share-link">Share</a>
       
         <a href="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -213,6 +213,15 @@ layout.group(v2, v3, v4).width(v5).height(v5)
   
     
 <nav id="article-nav">
+  
+    <a href="/2015/12/21/Angular-event-and-action-timer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Angular event and action timer
+        
+      </div>
+    </a>
   
   
     <a href="/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/" id="article-nav-older" class="article-nav-link-wrap">
@@ -241,7 +250,7 @@ layout.group(v2, v3, v4).width(v5).height(v5)
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event/">Event</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timer/">Timer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -250,7 +259,7 @@ layout.group(v2, v3, v4).width(v5).height(v5)
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 15px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Event/" style="font-size: 10px;">Event</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/Timer/" style="font-size: 10px;">Timer</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
     </div>
   </div>
 
@@ -259,7 +268,7 @@ layout.group(v2, v3, v4).width(v5).height(v5)
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -269,6 +278,10 @@ layout.group(v2, v3, v4).width(v5).height(v5)
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/21/Angular-event-and-action-timer/">Angular event and action timer</a>
+          </li>
         
           <li>
             <a href="/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/">FormationLayout and Protocol-Oriented Programming in Swift</a>
@@ -284,10 +297,6 @@ layout.group(v2, v3, v4).width(v5).height(v5)
         
           <li>
             <a href="/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/">C++ unit testing with AppCode and GoogleTest</a>
-          </li>
-        
-          <li>
-            <a href="/2014/10/09/Android-app-Draw-Shapes/">Android app Draw Shapes</a>
           </li>
         
       </ul>

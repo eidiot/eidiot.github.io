@@ -89,9 +89,9 @@
       
         <p>I am currently working on a hybrid mobile app using <a href="http://ionicframework.com/">Ionic</a> which is based on <a href="http://angularjs.org/">AngularJS</a>. <a href="http://angularjs.org/">AngularJS</a>, just like my favorite ActionScript 3 framework <a href="http://www.robotlegs.org/">Robotlegs</a>, was designed to be testable. With helps of dependency injection and built in mocks, it is quite easy to write tests but still can be painful to get everything sorted out. Here are some tips to make life easier. Like a template (in <a href="http://www.jetbrains.com/webstorm/">WebStorm</a>) to setup a test for a service:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'$MODULE$.$NAME$'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> $NAME$;</span><br><span class="line">    beforeEach(<span class="built_in">module</span>(<span class="string">'$MODULE$'</span>));</span><br><span class="line">    beforeEach(inject(<span class="function"><span class="keyword">function</span> (<span class="params">_$NAME$_</span>) </span>&#123;</span><br><span class="line">        $NAME$ = _$NAME$_;</span><br><span class="line">    &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="Mock_dependencies">Mock dependencies</h2><p>At start of tests when we load the module we can mock dependencies at the same time:</p>
+<h2 id="Mock_dependencies"><a href="#Mock_dependencies" class="headerlink" title="Mock dependencies"></a>Mock dependencies</h2><p>At start of tests when we load the module we can mock dependencies at the same time:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $VALUE$;</span><br><span class="line">beforeEach(<span class="built_in">module</span>(<span class="string">'$MODULE$'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$provide</span>) </span>&#123;</span><br><span class="line">    $VALUE$ = &#123;$END$&#125;;</span><br><span class="line">    $provide.value(<span class="string">'$VALUE$'</span>, $VALUE$);</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
-<h2 id="Test_controllers">Test controllers</h2><p>Unlike services, controllers can not be injected so we need to instantiate them ourselves.<br>
+<h2 id="Test_controllers"><a href="#Test_controllers" class="headerlink" title="Test controllers"></a>Test controllers</h2><p>Unlike services, controllers can not be injected so we need to instantiate them ourselves.<br>
         
           <p class="article-more-link">
             <a href="/2015/03/01/AngularJS-unit-testing-with-Jasmine/#more">Read More</a>
@@ -100,7 +100,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://evancoding.com/2015/03/01/AngularJS-unit-testing-with-Jasmine/" data-id="ciavlmy8700078an65izgnytg" class="article-share-link">Share</a>
+      <a data-url="http://evancoding.com/2015/03/01/AngularJS-unit-testing-with-Jasmine/" data-id="ciifme2i1000jo3u371e59ua9" class="article-share-link">Share</a>
       
         <a href="http://evancoding.com/2015/03/01/AngularJS-unit-testing-with-Jasmine/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -157,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://evancoding.com/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/" data-id="ciavlmy89000e8an6n6gyqfkv" class="article-share-link">Share</a>
+      <a data-url="http://evancoding.com/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/" data-id="ciifme2ia000oo3u3zdeorn0z" class="article-share-link">Share</a>
       
         <a href="http://evancoding.com/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -195,7 +195,7 @@
       
         <p>On my Java class the teacher used <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a> as an example for <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and I found it a really good example. So I made <a href="https://www.youtube.com/watch?v=-jDmel5Ru0E&amp;list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA">some videos</a> to demonstrate how I tried TDD on it. In <a href="https://www.youtube.com/watch?v=-jDmel5Ru0E&amp;list=PLZTujjIA-of3RHJmrx7frnxabInHp8VVA">the videos</a> when I say “grid” or “gred” it should actually be “cell” (And I pronounced “live” wrongly). Sorry for my poor English. If the videos are not clear please try to change quality to HD by the settings button.</p>
 <p>For each step I also posted new or changed code below, and links of full code after each step on <a href="https://github.com/evan-liu/TDD-GameLife-AndroidStudio">GitHub</a>. I posted some keyboard shortcuts as well. I don’t know what they are on windows but you can find them (and change them if you would like) in “Keymap” section of Android Studio’s preference (or settings) panel.</p>
-<h2 id="1-_Create_GameOfLife_Project">1. Create GameOfLife Project</h2><p>The first step simply create a new project on <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>. <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a> is still in beta (I’m using 0.8.6) but I am very happy with it so far. On the <a href="http://www.meetup.com/GDGAuckland/events/199648182/">GDG Auckland September Meetup</a>, <a href="https://twitter.com/juliusspencer">Julius Spencer</a> said his team (<a href="http://www.juliusspencer.co.nz/">JSA</a>) has already been using Android Studio on production for one year now. So give it a try if you haven’t yet. It’s so much better than eclipse!</p>
+<h2 id="1-_Create_GameOfLife_Project"><a href="#1-_Create_GameOfLife_Project" class="headerlink" title="1. Create GameOfLife Project"></a>1. Create GameOfLife Project</h2><p>The first step simply create a new project on <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>. <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a> is still in beta (I’m using 0.8.6) but I am very happy with it so far. On the <a href="http://www.meetup.com/GDGAuckland/events/199648182/">GDG Auckland September Meetup</a>, <a href="https://twitter.com/juliusspencer">Julius Spencer</a> said his team (<a href="http://www.juliusspencer.co.nz/">JSA</a>) has already been using Android Studio on production for one year now. So give it a try if you haven’t yet. It’s so much better than eclipse!</p>
         
           <p class="article-more-link">
             <a href="/2014/09/06/TDD-Demo-GameOfLife-with-Android-Studio/#more">Read More</a>
@@ -204,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://evancoding.com/2014/09/06/TDD-Demo-GameOfLife-with-Android-Studio/" data-id="ciavlmy8m000n8an635lfr88z" class="article-share-link">Share</a>
+      <a data-url="http://evancoding.com/2014/09/06/TDD-Demo-GameOfLife-with-Android-Studio/" data-id="ciifme2in000xo3u31jhv2lpn" class="article-share-link">Share</a>
       
         <a href="http://evancoding.com/2014/09/06/TDD-Demo-GameOfLife-with-Android-Studio/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -229,7 +229,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event/">Event</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timer/">Timer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -238,7 +238,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 15px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Event/" style="font-size: 10px;">Event</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/Timer/" style="font-size: 10px;">Timer</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
     </div>
   </div>
 
@@ -247,7 +247,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -257,6 +257,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/21/Angular-event-and-action-timer/">Angular event and action timer</a>
+          </li>
         
           <li>
             <a href="/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/">FormationLayout and Protocol-Oriented Programming in Swift</a>
@@ -272,10 +276,6 @@
         
           <li>
             <a href="/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/">C++ unit testing with AppCode and GoogleTest</a>
-          </li>
-        
-          <li>
-            <a href="/2014/10/09/Android-app-Draw-Shapes/">Android app Draw Shapes</a>
           </li>
         
       </ul>

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015/3 | Evan is Coding</title>
+  <title>Evan is Coding</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Evan is Coding">
-<meta property="og:url" content="http://evancoding.com/archives/2015/03/index.html">
+<meta property="og:url" content="http://evancoding.com/page/2/index.html">
 <meta property="og:site_name" content="Evan is Coding">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -65,10 +65,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-AngularJS-unit-testing-with-Jasmine" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-New-blog-with-Hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/03/01/AngularJS-unit-testing-with-Jasmine/" class="article-date">
-  <time datetime="2015-02-28T20:42:09.000Z" itemprop="datePublished">1 Mar 2015</time>
+    <a href="/2014/07/26/New-blog-with-Hexo/" class="article-date">
+  <time datetime="2014-07-25T23:18:29.000Z" itemprop="datePublished">26 Jul 2014</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/01/AngularJS-unit-testing-with-Jasmine/">AngularJS unit testing with Jasmine</a>
+      <a class="article-title" href="/2014/07/26/New-blog-with-Hexo/">New blog with Hexo</a>
     </h1>
   
 
@@ -87,26 +87,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I am currently working on a hybrid mobile app using <a href="http://ionicframework.com/">Ionic</a> which is based on <a href="http://angularjs.org/">AngularJS</a>. <a href="http://angularjs.org/">AngularJS</a>, just like my favorite ActionScript 3 framework <a href="http://www.robotlegs.org/">Robotlegs</a>, was designed to be testable. With helps of dependency injection and built in mocks, it is quite easy to write tests but still can be painful to get everything sorted out. Here are some tips to make life easier. Like a template (in <a href="http://www.jetbrains.com/webstorm/">WebStorm</a>) to setup a test for a service:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'$MODULE$.$NAME$'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> $NAME$;</span><br><span class="line">    beforeEach(<span class="built_in">module</span>(<span class="string">'$MODULE$'</span>));</span><br><span class="line">    beforeEach(inject(<span class="function"><span class="keyword">function</span> (<span class="params">_$NAME$_</span>) </span>&#123;</span><br><span class="line">        $NAME$ = _$NAME$_;</span><br><span class="line">    &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="Mock_dependencies"><a href="#Mock_dependencies" class="headerlink" title="Mock dependencies"></a>Mock dependencies</h2><p>At start of tests when we load the module we can mock dependencies at the same time:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $VALUE$;</span><br><span class="line">beforeEach(<span class="built_in">module</span>(<span class="string">'$MODULE$'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$provide</span>) </span>&#123;</span><br><span class="line">    $VALUE$ = &#123;$END$&#125;;</span><br><span class="line">    $provide.value(<span class="string">'$VALUE$'</span>, $VALUE$);</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
-<h2 id="Test_controllers"><a href="#Test_controllers" class="headerlink" title="Test controllers"></a>Test controllers</h2><p>Unlike services, controllers can not be injected so we need to instantiate them ourselves.<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/03/01/AngularJS-unit-testing-with-Jasmine/#more">Read More</a>
-          </p>
-        
+        <p>I don’t remember when I started to blog, maybe in 2005. I don’t remember when I blogged last time either, maybe in 2010. I don’t even remember when I lost my domain for my old blog.</p>
+<p>In 2006 I started to learn ActionScript 3 and wrote a few tutorials about it. I found that interest is the best teacher and teaching is the best way to learn. Now I am back to school as an international student in an English speaking country, so writing blog again in English must be a good idea.</p>
+<p>I’d like to use Github to host my blog this time and <a href="http://octopress.org/" target="_blank" rel="external">Octopress</a> seems not good enough because of its slow compiling. Then I found <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>, “<em>A fast, simple &amp; powerful blog framework, powered by Node.js.</em>“ It is simple and fast, and I am happy with it so far.</p>
+<p>So,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World</span><br></pre></td></tr></table></figure></p>
+<p>Again.</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://evancoding.com/2015/03/01/AngularJS-unit-testing-with-Jasmine/" data-id="ciifme2i1000jo3u371e59ua9" class="article-share-link">Share</a>
+      <a data-url="http://evancoding.com/2014/07/26/New-blog-with-Hexo/" data-id="ciifme2iu0014o3u3l4tqn2s3" class="article-share-link">Share</a>
       
-        <a href="http://evancoding.com/2015/03/01/AngularJS-unit-testing-with-Jasmine/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://evancoding.com/2014/07/26/New-blog-with-Hexo/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularJS/">AngularJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TDD/">TDD</a></li></ul>
-
     </footer>
   </div>
   
@@ -114,6 +108,10 @@
 
 
   
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 </section>
         

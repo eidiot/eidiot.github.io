@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/" data-id="cibaif4q00005krn6vkp8yxtw" class="article-share-link">Share</a>
+      <a data-url="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/" data-id="ciifme2hu0009o3u3edl5lzy1" class="article-share-link">Share</a>
       
         <a href="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -144,7 +144,7 @@
 </ul>
 <p>That was <a href="http://dannorth.net/2012/05/31/bdd-is-like-tdd-if/comment-page-1/#comment-10313">version 1</a> of BDD in mid-2003. <a href="http://dannorth.net/2012/05/31/bdd-is-like-tdd-if">BDD v3</a> now is more about communications between all different roles in agile teams using the same language: GivenWhenThen(<a href="https://github.com/cucumber/cucumber/wiki/Given-When-Then">[1]</a> <a href="http://martinfowler.com/bliki/GivenWhenThen.html">[2]</a>). </p>
 <p>I made <a href="/2014/09/06/TDD-Demo-GameOfLife-with-Android-Studio/">some videos</a> before to demonstrate TDD on Android platform using <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a> as an example. This time I will use this example again to demonstrate BDD on iOS platform in Swift and a BDD framework <a href="https://github.com/Quick/Quick">Quick</a>.<br>(<a href="https://github.com/evan-liu/BDD-GameOfLife-Swift">Code at GitHub</a>)</p>
-<h2 id="1-_Create_Project_and_Add_Quick_Framework">1. Create Project and Add Quick Framework</h2><ul>
+<h2 id="1-_Create_Project_and_Add_Quick_Framework"><a href="#1-_Create_Project_and_Add_Quick_Framework" class="headerlink" title="1. Create Project and Add Quick Framework"></a>1. Create Project and Add Quick Framework</h2><ul>
 <li>Create a “Single View Application” in XCode. </li>
 <li><a href="https://github.com/Quick/Quick/blob/master/Documentation/InstallingQuick.md#cocoapods">Install Quick</a> by <a href="https://cocoapods.org/">CocoaPods</a> </li>
 <li>Open GameOfLife.xcworkspace</li>
@@ -157,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://evancoding.com/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/" data-id="ciavlmy7p00008an6j6pcr0qw" class="article-share-link">Share</a>
+      <a data-url="http://evancoding.com/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/" data-id="ciifme2hy000eo3u30xjyut16" class="article-share-link">Share</a>
       
         <a href="http://evancoding.com/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -194,15 +194,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>I am trying to use <a href="http://realm.io/" target="_blank" rel="external">Realm</a> on an iOS project by <a href="http://cocoapods.org/" target="_blank" rel="external">CocoaPods</a>. After hours debugging, I finally got it working and there are 3 tips I’d like to record.</p>
-<h2 id="Tip_1:_Work_on_other_CocoaPods_library_project">Tip 1: Work on other <a href="http://cocoapods.org/" target="_blank" rel="external">CocoaPods</a> library project</h2><p>I am using <a href="http://cocoapods.org/" target="_blank" rel="external">CocoaPods</a> to separate the iOS project to libraries. <a href="http://realm.io/" target="_blank" rel="external">Realm</a> works fine with the main app and libraries separately, but the libraries couldn’t be compiled as Pods project in the main app. I solved this problem by adding <a href="http://realm.io/" target="_blank" rel="external">Realm</a> framework to the Pods project and add it to the library targets myself. But I need to do this every time after I run <code>pod update</code> which I need to do frequently. I need to write a script to do it for me later.</p>
+<h2 id="Tip_1_3A_Work_on_other_CocoaPods_library_project"><a href="#Tip_1_3A_Work_on_other_CocoaPods_library_project" class="headerlink" title="Tip 1: Work on other CocoaPods library project"></a>Tip 1: Work on other <a href="http://cocoapods.org/" target="_blank" rel="external">CocoaPods</a> library project</h2><p>I am using <a href="http://cocoapods.org/" target="_blank" rel="external">CocoaPods</a> to separate the iOS project to libraries. <a href="http://realm.io/" target="_blank" rel="external">Realm</a> works fine with the main app and libraries separately, but the libraries couldn’t be compiled as Pods project in the main app. I solved this problem by adding <a href="http://realm.io/" target="_blank" rel="external">Realm</a> framework to the Pods project and add it to the library targets myself. But I need to do this every time after I run <code>pod update</code> which I need to do frequently. I need to write a script to do it for me later.</p>
 <p>(<strong>Update 21.09.2014</strong>: Realm 0.85.0 use source code instead of framework file so Tip 1 is not needed now)</p>
-<h2 id="Tip_2:_Runtime_errors_when_try_to_write_Realm_model_objects">Tip 2: Runtime errors when try to write <a href="http://realm.io/" target="_blank" rel="external">Realm</a> model objects</h2><p>If you need to use a RLMArray of one model object <code>SomeObject</code> in another, you need to use <code>RLM_ARRAY_TYPE(SomeObject)</code> and declare it as <code>RLMArray&lt;SomeObject&gt; *someObjects</code>. At first I couldn’t get it work so I marked the <code>someObjects</code> property ignored. Then I can’t get it work any more and the runtime error tell me nothing about what happened. The problems is, when you change one RLMObject schema and you already stored some data as the old schema, you need to delete the old Realm file (or <a href="http://realm.io/docs/cocoa/0.83.0/#migrations" target="_blank" rel="external">migrate</a>).</p>
-<h2 id="Tip_3:_Do_not_work_with_&lt;NSObject&gt;_protocol">Tip 3: Do not work with <code>&lt;NSObject&gt;</code> protocol</h2><p>After I upgraded to Realm 0.85.0 and Xcode 6, Realm complained about a ‘hash’ property. After debugging for a while I found out that it is because some of my RLMObjects conform to <code>&lt;NSObject&gt;</code> protocol. It was fine with Realm 0.83.0 and Xcode 5. I’m not sure if it’s because of my upgrade of Realm or Xcode but it was fixed just by removing the <code>&lt;NSObject&gt;</code> protocol from the RLMObjects.</p>
+<h2 id="Tip_2_3A_Runtime_errors_when_try_to_write_Realm_model_objects"><a href="#Tip_2_3A_Runtime_errors_when_try_to_write_Realm_model_objects" class="headerlink" title="Tip 2: Runtime errors when try to write Realm model objects"></a>Tip 2: Runtime errors when try to write <a href="http://realm.io/" target="_blank" rel="external">Realm</a> model objects</h2><p>If you need to use a RLMArray of one model object <code>SomeObject</code> in another, you need to use <code>RLM_ARRAY_TYPE(SomeObject)</code> and declare it as <code>RLMArray&lt;SomeObject&gt; *someObjects</code>. At first I couldn’t get it work so I marked the <code>someObjects</code> property ignored. Then I can’t get it work any more and the runtime error tell me nothing about what happened. The problems is, when you change one RLMObject schema and you already stored some data as the old schema, you need to delete the old Realm file (or <a href="http://realm.io/docs/cocoa/0.83.0/#migrations" target="_blank" rel="external">migrate</a>).</p>
+<h2 id="Tip_3_3A_Do_not_work_with__26lt_3BNSObject_26gt_3B_protocol"><a href="#Tip_3_3A_Do_not_work_with__26lt_3BNSObject_26gt_3B_protocol" class="headerlink" title="Tip 3: Do not work with &lt;NSObject&gt; protocol"></a>Tip 3: Do not work with <code>&lt;NSObject&gt;</code> protocol</h2><p>After I upgraded to Realm 0.85.0 and Xcode 6, Realm complained about a ‘hash’ property. After debugging for a while I found out that it is because some of my RLMObjects conform to <code>&lt;NSObject&gt;</code> protocol. It was fine with Realm 0.83.0 and Xcode 5. I’m not sure if it’s because of my upgrade of Realm or Xcode but it was fixed just by removing the <code>&lt;NSObject&gt;</code> protocol from the RLMObjects.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://evancoding.com/2014/08/22/Tips-of-using-Realm-iOS/" data-id="ciavlmy8q000r8an6ekgqqqkn" class="article-share-link">Share</a>
+      <a data-url="http://evancoding.com/2014/08/22/Tips-of-using-Realm-iOS/" data-id="ciifme2iq0011o3u3w6hlxz4o" class="article-share-link">Share</a>
       
         <a href="http://evancoding.com/2014/08/22/Tips-of-using-Realm-iOS/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -227,7 +227,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event/">Event</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Timer/">Timer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -236,7 +236,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 15px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Event/" style="font-size: 10px;">Event</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/Timer/" style="font-size: 10px;">Timer</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
     </div>
   </div>
 
@@ -245,7 +245,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -255,6 +255,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/12/21/Angular-event-and-action-timer/">Angular event and action timer</a>
+          </li>
         
           <li>
             <a href="/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/">FormationLayout and Protocol-Oriented Programming in Swift</a>
@@ -270,10 +274,6 @@
         
           <li>
             <a href="/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/">C++ unit testing with AppCode and GoogleTest</a>
-          </li>
-        
-          <li>
-            <a href="/2014/10/09/Android-app-Draw-Shapes/">Android app Draw Shapes</a>
           </li>
         
       </ul>
