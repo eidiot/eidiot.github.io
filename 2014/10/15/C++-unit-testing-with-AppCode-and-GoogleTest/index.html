@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C++ unit testing with AppCode and GoogleTest | Evan is Coding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="AppCode started to support Google Test since 2.5 EAP. Steps to get it work:
+
+Get Google Test
+Open {gtest_path}/xcode/gtest.xcodeproj and build gtest.framework
+Create a “Command Line Tool” project or t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ unit testing with AppCode and GoogleTest">
+<meta property="og:url" content="http://evancoding.com/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/index.html">
+<meta property="og:site_name" content="Evan is Coding">
+<meta property="og:description" content="AppCode started to support Google Test since 2.5 EAP. Steps to get it work:
+
+Get Google Test
+Open {gtest_path}/xcode/gtest.xcodeproj and build gtest.framework
+Create a “Command Line Tool” project or t">
+<meta property="og:image" content="http://evancoding.com/lib.png">
+<meta property="og:image" content="http://evancoding.com/run.png">
+<meta property="og:image" content="http://evancoding.com/googleTest.png">
+<meta property="og:updated_time" content="2015-05-22T00:21:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++ unit testing with AppCode and GoogleTest">
+<meta name="twitter:description" content="AppCode started to support Google Test since 2.5 EAP. Steps to get it work:
+
+Get Google Test
+Open {gtest_path}/xcode/gtest.xcodeproj and build gtest.framework
+Create a “Command Line Tool” project or t">
+  
+    <link rel="alternative" href="/atom.xml" title="Evan is Coding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Evan is Coding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Swift, Objective-C, JavaScript, ActionScript, C++, Java</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://evancoding.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C++-unit-testing-with-AppCode-and-GoogleTest" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/" class="article-date">
+  <time datetime="2014-10-15T08:35:14.000Z" itemprop="datePublished">15 Oct 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++ unit testing with AppCode and GoogleTest
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>AppCode started to support <a href="https://code.google.com/p/googletest/" target="_blank" rel="external">Google Test</a> <a href="http://blog.jetbrains.com/objc/2013/09/appcode-2-5-eap-opens-with-cocoapods-and-google-test/" target="_blank" rel="external">since 2.5 EAP</a>. Steps to get it work:</p>
+<ol>
+<li><a href="https://code.google.com/p/googletest/downloads/list" target="_blank" rel="external">Get Google Test</a></li>
+<li>Open <code>{gtest_path}/xcode/gtest.xcodeproj</code> and build <code>gtest.framework</code></li>
+<li>Create a “Command Line Tool” project or target</li>
+<li>Add <code>gtest.framework</code> to project and the new target</li>
+<li>Set Up the Executable Run Environment. 3 options:<ul>
+<li><a href="https://code.google.com/p/googletest/wiki/XcodeGuide#Set_Up_the_Executable_Run_Environment" target="_blank" rel="external">Setting the “DYLD_FRAMEWORK_PATH” environment variable</a></li>
+<li><a href="http://dennycd.me/google-test-xcode-mac-osx/" target="_blank" rel="external">Use static libs instead of framework</a></li>
+<li>I just copy <code>gtest.framework</code> to <code>/Library/Frameworks/</code></li>
+</ul>
+</li>
+<li>Make sure your project and google test use the same C++ standard library<a id="more"></a>
+<ul>
+<li>If they are different you can <a href="http://dennycd.me/google-test-xcode-mac-osx/" target="_blank" rel="external">make google test to use libc++</a></li>
+<li>I change my test target to use the same one as google test instead. (libstdc++) <img src="lib.png" alt="C++ Standard Library"></li>
+</ul>
+</li>
+<li>In AppCode, <code>Run/Edit Configurations</code>, Add new Google Test Configurations <img src="run.png" alt="Add Run Configuration"></li>
+<li>Set target to the created “Command Line Tool”</li>
+<li>Run google test from main.cpp<pre><code class="c++"><span class="preprocessor">#<span class="keyword">include</span> &lt;gtest/gtest.h&gt;</span>
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span> </span>{
+ ::testing::InitGoogleTest(&amp;argc, argv);
+ <span class="keyword">return</span> RUN_ALL_TESTS();
+}
+</code></pre>
+Add your tests and happy testing!<br><img src="googleTest.png" alt="Google Test Support in AppCode"></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://evancoding.com/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/" data-id="ciavlmy89000e8an6n6gyqfkv" class="article-share-link">Share</a>
+      
+        <a href="http://evancoding.com/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TDD/">TDD</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/01/AngularJS-unit-testing-with-Jasmine/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          AngularJS unit testing with Jasmine
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/10/09/Android-app-Draw-Shapes/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android app Draw Shapes</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/">FormationLayout and Protocol-Oriented Programming in Swift</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/">BDD Demo with GameOfLife in Swift and Quick</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/01/AngularJS-unit-testing-with-Jasmine/">AngularJS unit testing with Jasmine</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/">C++ unit testing with AppCode and GoogleTest</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/09/Android-app-Draw-Shapes/">Android app Draw Shapes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Evan Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'eidiot-blog';
+  
+  var disqus_url = 'http://evancoding.com/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

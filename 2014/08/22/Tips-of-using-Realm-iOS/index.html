@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tips of using Realm iOS | Evan is Coding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I am trying to use Realm on an iOS project by CocoaPods. After hours debugging, I finally got it working and there are 3 tips I’d like to record.
+Tip 1: Work on other CocoaPods library projectI am usi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tips of using Realm iOS">
+<meta property="og:url" content="http://evancoding.com/2014/08/22/Tips-of-using-Realm-iOS/index.html">
+<meta property="og:site_name" content="Evan is Coding">
+<meta property="og:description" content="I am trying to use Realm on an iOS project by CocoaPods. After hours debugging, I finally got it working and there are 3 tips I’d like to record.
+Tip 1: Work on other CocoaPods library projectI am usi">
+<meta property="og:updated_time" content="2015-05-22T00:22:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tips of using Realm iOS">
+<meta name="twitter:description" content="I am trying to use Realm on an iOS project by CocoaPods. After hours debugging, I finally got it working and there are 3 tips I’d like to record.
+Tip 1: Work on other CocoaPods library projectI am usi">
+  
+    <link rel="alternative" href="/atom.xml" title="Evan is Coding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Evan is Coding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Swift, Objective-C, JavaScript, ActionScript, C++, Java</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://evancoding.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Tips-of-using-Realm-iOS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/08/22/Tips-of-using-Realm-iOS/" class="article-date">
+  <time datetime="2014-08-21T19:58:14.000Z" itemprop="datePublished">22 Aug 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tips of using Realm iOS
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I am trying to use <a href="http://realm.io/" target="_blank" rel="external">Realm</a> on an iOS project by <a href="http://cocoapods.org/" target="_blank" rel="external">CocoaPods</a>. After hours debugging, I finally got it working and there are 3 tips I’d like to record.</p>
+<h2 id="Tip_1:_Work_on_other_CocoaPods_library_project">Tip 1: Work on other <a href="http://cocoapods.org/" target="_blank" rel="external">CocoaPods</a> library project</h2><p>I am using <a href="http://cocoapods.org/" target="_blank" rel="external">CocoaPods</a> to separate the iOS project to libraries. <a href="http://realm.io/" target="_blank" rel="external">Realm</a> works fine with the main app and libraries separately, but the libraries couldn’t be compiled as Pods project in the main app. I solved this problem by adding <a href="http://realm.io/" target="_blank" rel="external">Realm</a> framework to the Pods project and add it to the library targets myself. But I need to do this every time after I run <code>pod update</code> which I need to do frequently. I need to write a script to do it for me later.</p>
+<p>(<strong>Update 21.09.2014</strong>: Realm 0.85.0 use source code instead of framework file so Tip 1 is not needed now)</p>
+<h2 id="Tip_2:_Runtime_errors_when_try_to_write_Realm_model_objects">Tip 2: Runtime errors when try to write <a href="http://realm.io/" target="_blank" rel="external">Realm</a> model objects</h2><p>If you need to use a RLMArray of one model object <code>SomeObject</code> in another, you need to use <code>RLM_ARRAY_TYPE(SomeObject)</code> and declare it as <code>RLMArray&lt;SomeObject&gt; *someObjects</code>. At first I couldn’t get it work so I marked the <code>someObjects</code> property ignored. Then I can’t get it work any more and the runtime error tell me nothing about what happened. The problems is, when you change one RLMObject schema and you already stored some data as the old schema, you need to delete the old Realm file (or <a href="http://realm.io/docs/cocoa/0.83.0/#migrations" target="_blank" rel="external">migrate</a>).</p>
+<h2 id="Tip_3:_Do_not_work_with_&lt;NSObject&gt;_protocol">Tip 3: Do not work with <code>&lt;NSObject&gt;</code> protocol</h2><p>After I upgraded to Realm 0.85.0 and Xcode 6, Realm complained about a ‘hash’ property. After debugging for a while I found out that it is because some of my RLMObjects conform to <code>&lt;NSObject&gt;</code> protocol. It was fine with Realm 0.83.0 and Xcode 5. I’m not sure if it’s because of my upgrade of Realm or Xcode but it was fixed just by removing the <code>&lt;NSObject&gt;</code> protocol from the RLMObjects.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://evancoding.com/2014/08/22/Tips-of-using-Realm-iOS/" data-id="ciavlmy8q000r8an6ekgqqqkn" class="article-share-link">Share</a>
+      
+        <a href="http://evancoding.com/2014/08/22/Tips-of-using-Realm-iOS/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/08/26/Run-different-hsqldb-databases/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Run different hsqldb databases
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/07/26/hsqldb-on-Mac-OS-X/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hsqldb on Mac OS X</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/">FormationLayout and Protocol-Oriented Programming in Swift</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/">BDD Demo with GameOfLife in Swift and Quick</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/01/AngularJS-unit-testing-with-Jasmine/">AngularJS unit testing with Jasmine</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/">C++ unit testing with AppCode and GoogleTest</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/09/Android-app-Draw-Shapes/">Android app Draw Shapes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Evan Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'eidiot-blog';
+  
+  var disqus_url = 'http://evancoding.com/2014/08/22/Tips-of-using-Realm-iOS/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

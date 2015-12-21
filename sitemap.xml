@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/</loc>
+    <lastmod>2015-07-02T20:58:33.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/</loc>
+    <lastmod>2015-05-23T21:09:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2014/08/22/Tips-of-using-Realm-iOS/</loc>
+    <lastmod>2015-05-22T00:22:18.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2014/09/06/TDD-Demo-GameOfLife-with-Android-Studio/</loc>
+    <lastmod>2015-05-22T00:21:38.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2014/10/09/Android-app-Draw-Shapes/</loc>
+    <lastmod>2015-05-22T00:21:28.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/</loc>
+    <lastmod>2015-05-22T00:21:15.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2015/03/01/AngularJS-unit-testing-with-Jasmine/</loc>
+    <lastmod>2015-05-22T00:21:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2014/07/26/New-blog-with-Hexo/</loc>
+    <lastmod>2015-02-28T20:30:47.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2014/08/26/Run-different-hsqldb-databases/</loc>
+    <lastmod>2014-08-26T03:48:13.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://evancoding.com/2014/07/26/hsqldb-on-Mac-OS-X/</loc>
+    <lastmod>2014-08-05T06:11:51.000Z</lastmod>
+  </url>
+  
+</urlset>

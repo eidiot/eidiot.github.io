@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>FormationLayout and Protocol-Oriented Programming in Swift | Evan is Coding</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="My favourite talk of WWDC 2015 was Protocol-Oriented Programming in Swift. However, when Dave Abrahams says, “Swift is the first Protocol-Oriented Programming language”, I didn’t get it. Isn’t protoco">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FormationLayout and Protocol-Oriented Programming in Swift">
+<meta property="og:url" content="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/index.html">
+<meta property="og:site_name" content="Evan is Coding">
+<meta property="og:description" content="My favourite talk of WWDC 2015 was Protocol-Oriented Programming in Swift. However, when Dave Abrahams says, “Swift is the first Protocol-Oriented Programming language”, I didn’t get it. Isn’t protoco">
+<meta property="og:updated_time" content="2015-07-02T20:58:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FormationLayout and Protocol-Oriented Programming in Swift">
+<meta name="twitter:description" content="My favourite talk of WWDC 2015 was Protocol-Oriented Programming in Swift. However, when Dave Abrahams says, “Swift is the first Protocol-Oriented Programming language”, I didn’t get it. Isn’t protoco">
+  
+    <link rel="alternative" href="/atom.xml" title="Evan is Coding" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Evan is Coding</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Swift, Objective-C, JavaScript, ActionScript, C++, Java</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://evancoding.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-FormationLayout-and-Protocol-Oriented-Programming-in-Swift" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/" class="article-date">
+  <time datetime="2015-06-24T08:39:19.000Z" itemprop="datePublished">24 Jun 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      FormationLayout and Protocol-Oriented Programming in Swift
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>My favourite talk of <a href="https://developer.apple.com/videos/wwdc/2015/" target="_blank" rel="external">WWDC 2015</a> was <a href="https://developer.apple.com/videos/wwdc/2015/?id=408" target="_blank" rel="external">Protocol-Oriented Programming in Swift</a>. However, when <a href="https://twitter.com/daveabrahams" target="_blank" rel="external">Dave Abrahams</a> says, “Swift is the first Protocol-Oriented Programming language”, I didn’t get it. Isn’t <code>protocol</code> in Swift the same as <code>interface</code> in other languages? Isn’t “Protocol-Oriented Programming” the same as one of the <a href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)" target="_blank" rel="external">SOLID principles</a> - <a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle" target="_blank" rel="external">Dependency inversion principle</a> - “Depend upon Abstractions. Do not depend upon concretions”? It is not new at all.</p>
+<p>Then in the later part of the talk I learned from <a href="https://twitter.com/daveabrahams" target="_blank" rel="external">Dave</a> how powerful protocol is in Swift 2, especially <strong>Self Requirement</strong> and <strong>Protocol Extensions</strong>, and why we should use protocols instead of classes for abstraction.  I felt excited and already Protocol-Oriented myself after watching the talk. I need to do something to check if I really am :)</p>
+<p>So here comes <a href="https://github.com/evan-liu/FormationLayout" target="_blank" rel="external">FormationLayout</a>, a Protocol-Oriented AutoLayout library in Swift 2. Now I will show you how I made it Protocol-Oriented and why it is good.</p>
+<a id="more"></a>
+<p>There are three main types in <a href="https://github.com/evan-liu/FormationLayout" target="_blank" rel="external">FormationLayout</a>: </p>
+<ul>
+<li><code>FormationLayout</code> - Top level layout manager. </li>
+<li><code>ViewFormation</code> - Layout manager for one view. Created by <code>FormationLayout.view()</code>.</li>
+<li><code>GroupFormation</code> - Layout manager for a group of views. Created by <code>FormationLayout.group()</code>.</li>
+</ul>
+<p>My first two goals: </p>
+<ul>
+<li>The constraint factory methods of “formations” should be chainable.</li>
+<li>The <code>GroupFormation</code> should be able to do the same things as <code>ViewFormation</code> does on each view in the group.</li>
+</ul>
+<pre><code class="swift"><span class="keyword">let</span> layout = <span class="type">FormationLayout</span>(rootView: view)
+layout.view(v1).width(<span class="number">100</span>).height(<span class="number">50</span>)
+layout.group(v2, v3, v4).width(<span class="number">100</span>).height(<span class="number">50</span>)
+</code></pre>
+<p>It is easy by using an abstract class. </p>
+<pre><code class="swift"><span class="class"><span class="keyword">class</span> <span class="title">AbstractFormation</span> </span>{
+    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { fatalError(<span class="string">"abstract"</span>) }
+    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { fatalError(<span class="string">"abstract"</span>) }
+}
+<span class="class"><span class="keyword">class</span> <span class="title">ViewFormation</span>: <span class="title">AbstractFormation</span> </span>{
+    <span class="comment">// Create constraints in these methods then return self.</span>
+    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+}
+<span class="class"><span class="keyword">class</span> <span class="title">GroupFormation</span>: <span class="title">AbstractFormation</span> </span>{
+    <span class="comment">// Call same methods on each view in the group then return self.</span>
+    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+}
+</code></pre>
+<p>Now I want the formations to make size of a view be the same as another. </p>
+<pre><code class="swift"><span class="keyword">let</span> layout = <span class="type">FormationLayout</span>(rootView: view)
+layout.view(v1).width(v5).height(v5)
+layout.group(v2, v3, v4).width(v5).height(v5)
+</code></pre>
+<p>Still easy. Add another two abstract methods in the abstract class and make the two formation types override them, right? Wait, how about the <a href="https://en.wikipedia.org/wiki/Open/closed_principle" target="_blank" rel="external">open/closed principle</a>? I don’t want to modify all my classes every time I want new features!</p>
+<p>Let’s try protocols instead.</p>
+<pre><code class="swift"><span class="class"><span class="keyword">protocol</span> <span class="title">FormationTakesCGFloat</span> </span>{
+    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
+    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
+}
+<span class="class"><span class="keyword">extension</span> <span class="title">ViewFormation</span>: <span class="title">FormationTakesCGFloat</span> </span>{
+    <span class="comment">// Create constraints in these methods then return self.</span>
+    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+}
+<span class="class"><span class="keyword">extension</span> <span class="title">GroupFormation</span>: <span class="title">FormationTakesCGFloat</span> </span>{
+    <span class="comment">// Call same methods on each view in the group then return self.</span>
+    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+}
+
+<span class="class"><span class="keyword">protocol</span> <span class="title">FormationTakesUIView</span> </span>{
+    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(targetView: UIView)</span></span> -&gt; <span class="type">Self</span>
+    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(targetView: UIView)</span></span> -&gt; <span class="type">Self</span>
+}
+<span class="comment">//... extension ViewFormation &amp; GroupFormation: FormationTakesUIView ...</span>
+</code></pre>
+<p>Firstly, we now have different protocols and formation extensions that confirm to the protocols. When we need other forms of constraint factory methods just create new protocols and extensions. No changes to any exist code.</p>
+<p>Secondly, methods return <code>Self</code> to make them chainable even though they are defined in different protocols or extensions. </p>
+<p>That’s good. Now I want more methods that take constant value and UIView. So let’s add <code>top()</code> and <code>bottom()</code> to all the protocols and extensions …</p>
+<p>Wait, we have <strong>Protocol Extensions</strong> in Swift 2. Let’s change our protocols:  </p>
+<pre><code class="swift"><span class="class"><span class="keyword">protocol</span> <span class="title">FormationTakesCGFloat</span> </span>{
+    <span class="func"><span class="keyword">func</span> <span class="title">attribute</span><span class="params">(attribute: NSLayoutAttribute, value: CGFloat)</span></span> -&gt; <span class="type">Self</span>
+}
+<span class="class"><span class="keyword">extension</span> <span class="title">ViewFormation</span>: <span class="title">FormationTakesCGFloat</span> </span>{
+    <span class="comment">// Create constraints in this method then return self.</span>
+    attribute(attribute: <span class="type">NSLayoutAttribute</span>, value: <span class="type">CGFloat</span>) -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+}
+<span class="class"><span class="keyword">extension</span> <span class="title">GroupFormation</span>: <span class="title">FormationTakesCGFloat</span> </span>{
+    <span class="comment">// Call same methods on each view in the group then return self.</span>
+    attribute(attribute: <span class="type">NSLayoutAttribute</span>, value: <span class="type">CGFloat</span>) -&gt; <span class="type">Self</span> { <span class="keyword">return</span> <span class="keyword">self</span> }
+}
+
+<span class="class"><span class="keyword">extension</span> <span class="title">FormationTakesCGFloat</span> </span>{
+    <span class="func"><span class="keyword">func</span> <span class="title">width</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
+        <span class="keyword">return</span> attribute(.<span class="type">Width</span>, value: value)
+    }
+    <span class="func"><span class="keyword">func</span> <span class="title">height</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
+        <span class="keyword">return</span> attribute(.<span class="type">Height</span>, value: value)
+    }    
+}
+</code></pre>
+<p>When we want more methods take <code>CGFloat</code>/<code>UIView</code>, create more <strong>Protocol Extensions</strong>.</p>
+<pre><code class="swift"><span class="class"><span class="keyword">extension</span> <span class="title">FormationTakesCGFloat</span> </span>{
+    <span class="func"><span class="keyword">func</span> <span class="title">top</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
+        <span class="keyword">return</span> attribute(.<span class="type">Top</span>, value: value)
+    }
+    <span class="func"><span class="keyword">func</span> <span class="title">bottom</span><span class="params">(value: CGFloat)</span></span> -&gt; <span class="type">Self</span> {
+        <span class="keyword">return</span> attribute(.<span class="type">Bottom</span>, value: value)
+    }    
+}
+</code></pre>
+<p>Then both <code>ViewFormation</code> and <code>GroupFormatoin</code> will have <code>top()</code> and <code>bottom()</code> methods without any changes to exist code.</p>
+<p>So this is how <a href="https://github.com/evan-liu/FormationLayout" target="_blank" rel="external">FormationLayout</a> looks like now: </p>
+<h4 id="Methods_are_chainable">Methods are chainable</h4><p>Even group only methods like <code>hSpace()</code> and <code>vSpace()</code>:</p>
+<pre><code class="swift">layout.group(v1, v2, v3).size(<span class="number">100</span>).hSpace(<span class="number">10</span>).centerY(view)
+</code></pre>
+<h4 id="Features_are_protocols">Features are protocols</h4><p>Steps to add a new feature (form of constraint factory methods): </p>
+<ul>
+<li>Create a protocol.</li>
+<li>Create extensions of the formations that support the new feature to confirm to the protocol.</li>
+<li>Create protocol extensions for helper methods. All formations that confirm to the protocol will have the new methods.</li>
+<li>No changes to any exist code!</li>
+</ul>
+<p>Now I feel myself more Protocol-Oriented. Need to be better by watching <a href="https://developer.apple.com/videos/wwdc/2015/?id=414" target="_blank" rel="external">Building Better Apps with Value Types in Swift</a> :)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/" data-id="cibaif4q00005krn6vkp8yxtw" class="article-share-link">Share</a>
+      
+        <a href="http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/">Swift</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">BDD Demo with GameOfLife in Swift and Quick</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJS/">AngularJS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apps/">Apps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BDD/">BDD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TDD/">TDD</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/AngularJS/" style="font-size: 10px;">AngularJS</a> <a href="/tags/Apps/" style="font-size: 10px;">Apps</a> <a href="/tags/BDD/" style="font-size: 10px;">BDD</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a> <a href="/tags/TDD/" style="font-size: 20px;">TDD</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/">FormationLayout and Protocol-Oriented Programming in Swift</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/22/BDD-Demo-with-GameOfLife-in-Swift-and-Quick/">BDD Demo with GameOfLife in Swift and Quick</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/01/AngularJS-unit-testing-with-Jasmine/">AngularJS unit testing with Jasmine</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/15/C++-unit-testing-with-AppCode-and-GoogleTest/">C++ unit testing with AppCode and GoogleTest</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/09/Android-app-Draw-Shapes/">Android app Draw Shapes</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Evan Liu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'eidiot-blog';
+  
+  var disqus_url = 'http://evancoding.com/2015/06/24/FormationLayout-and-Protocol-Oriented-Programming-in-Swift/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
